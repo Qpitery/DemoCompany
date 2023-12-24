@@ -1,0 +1,54 @@
+﻿<Window x:Class="DemoCompany.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoCompany"
+        xmlns:adorners="http://gu.se/Adorners"
+        mc:Ignorable="d"
+        Title="Personal" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+     
+        <ListView Name="MainList1" Grid.Column="0" Grid.Row="0" SelectionChanged="select"  SelectedItem="selectedEmploye" >
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="Id"  DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Sername" DisplayMemberBinding="{Binding Sername}"/>
+                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Position}"/>
+                    <GridViewColumn Header="Departament" DisplayMemberBinding="{Binding Department.Name}"/>
+                    <GridViewColumn Header="Salary" DisplayMemberBinding="{Binding Salary}"/>
+                    <GridViewColumn Header="HiringDate" DisplayMemberBinding="{Binding HiringDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="1">
+            <Label Content="Поиск" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <TextBox x:Name="Search" TextChanged="Searсh_TextChanged" adorners:Watermark.Text="Поиск" Margin="5" />
+            <Label Content="Сотрудник" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14" />
+            <TextBox x:Name="Name" adorners:Watermark.Text="Имя работника" Margin="5" />
+            <TextBox x:Name="Sername" adorners:Watermark.Text="Фамилия работника" Margin="5"/>
+            <Label Content="Данные сотрудников:" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <Label></Label>
+            <Label Content="Дата трудоустройства" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <DatePicker x:Name="HiringDate"/>
+            <Label Content="Должность" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <ComboBox Name="Position" ItemsSource="{Binding Position}" DisplayMemberPath="Position" SelectedValuePath="Id"/>
+            <Label Content="Отдел"  Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14" />
+            <ComboBox Name="Department" ItemsSource="{Binding Department.Name}" DisplayMemberPath="Name" SelectedValuePath="Id"/>
+            <TextBox Grid.Row="1" Text="{Binding ElementName=Salary, Path=Value, StringFormat='Зарплата: {0:C0}'}" Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <Slider x:Name="Salary" Grid.Row="2" Minimum="1000" Maximum="7000" IsSnapToTickEnabled="True" TickFrequency="100" ValueChanged="Slider" Margin="5,5,5,15" />
+            <Button Height="25" Content="Добавить" Click="AddButton_Click" Margin="5"  Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <Button Height="25" Content="Изменить" Click="EditButton_Click" Margin="5"  Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+            <Button Height="25" Content="Удалить" Click="RemoveButton_Click" Margin="5"  Background="#FFE1E4FF" FontFamily="Tahoma" Foreground="#FFFF4A6D" FontWeight="Bold" FontSize="14"/>
+
+
+        </StackPanel>
+ 
+
+    </Grid>
+</Window>
